@@ -1,4 +1,4 @@
-// var gpio = require("pi-gpio");
+var gpio = require("pi-gpio");
 var Twit = require('twit')
 var Yo = require("yo-api");
 
@@ -6,7 +6,6 @@ var interval = null;
 
 yo_lunch = new Yo("bb3233f2-a2f3-4870-bdee-2c99cb9c6401");
 yo_coffee = new Yo("0ea30d1d-d00e-4aff-9eae-e36d3085a9f4");
-
 
 var twit = new Twit({
     consumer_key:         'sjHui21VXJlacMFVR4d1t7qqp'
@@ -16,16 +15,21 @@ var twit = new Twit({
 })
 
 function tweet(status){
-    twit.post('statuses/update', { status: status}, function(err, data, response) {
-
+    twit.post('statuses/update', {status: status + new Date()}, function(err, data, response) {
     })
 }
 
 tweet('Server Restarted. ' + new Date());
 
+gpio.open(12, function(err) {
+    gpio.open(16, function(err) {
+        start();
+    }); 
+});
+
 function start(){
     interval = setInterval(function(){
-        gpio.read(7, function(err, value) {
+        gpio.read(12, function(err, value) {
             if(value){
                 console.log("lunch");
                 sendYo("lunch");
@@ -34,7 +38,7 @@ function start(){
                 setTimeout(start, 5000);
             }
         });
-        gpio.read(11, function(err, value){
+        gpio.read(16, function(err, value){
             if(value){
                 console.log("coffee");
                 sendYo("coffee");
@@ -43,14 +47,14 @@ function start(){
                 setTimeout(start, 5000);
             }
         });
-        gpio.read(13, function(err, value){
-            if(value){
-                console.log("emergency");
-                sendTweet("emergency");
-                stop();
-                setTimeout(start, 5000);
-            }
-        });
+        // gpio.read(13, function(err, value){
+        //     if(value){
+        //         console.log("emergency");
+        //         sendTweet("emergency");
+        //         stop();
+        //         setTimeout(start, 5000);
+        //     }
+        // });
     }, 100);
 }
 
