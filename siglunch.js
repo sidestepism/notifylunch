@@ -1,6 +1,7 @@
 var gpio = require("pi-gpio");
 var Twit = require('twit')
 var Yo = require("yo-api");
+var moment = require("moment");
 
 var interval = null;
 
@@ -15,7 +16,7 @@ var twit = new Twit({
 })
 
 function tweet(status){
-    twit.post('statuses/update', {status: status + new Date()}, function(err, data, response) {
+    twit.post('statuses/update', {status: status + " " + moment().format("YYYY/MM/DD HH:mm").toString()}, function(err, data, response) {
     })
 }
 

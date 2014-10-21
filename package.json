@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sidestepism/notifylunch",
   "dependencies": {
+    "moment": "^2.8.3",
     "pi-gpio": "0.0.6",
     "twit": "^1.1.18",
     "yo-api": "^1.0.0"
