@@ -29,7 +29,7 @@ gpio.open(12, function(err) {
 
 function start(){
     interval = setInterval(function(){
-        gpio.read(12, function(err, value) {
+        gpio.read(16, function(err, value) {
             if(value){
                 console.log("lunch");
                 sendYo("lunch");
@@ -38,7 +38,7 @@ function start(){
                 setTimeout(start, 5000);
             }
         });
-        gpio.read(16, function(err, value){
+        gpio.read(18, function(err, value){
             if(value){
                 console.log("coffee");
                 sendYo("coffee");
