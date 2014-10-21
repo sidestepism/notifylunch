@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/sidestepism/notifylunch/issues"
   },
-  "homepage": "https://github.com/sidestepism/notifylunch"
+  "homepage": "https://github.com/sidestepism/notifylunch",
+  "dependencies": {
+    "pi-gpio": "0.0.6",
+    "twit": "^1.1.18",
+    "yo-api": "^1.0.0"
+  }
 }
