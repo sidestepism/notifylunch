@@ -20,8 +20,6 @@ function tweet(status){
     })
 }
 
-tweet('Server Restarted. ' + new Date());
-
 gpio.open(12, function(err) {
     gpio.open(16, function(err) {
         start();
